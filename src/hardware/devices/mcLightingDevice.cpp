@@ -30,7 +30,7 @@ bool McLightingDevice::configure(std::unordered_map<string, string> settings)
 
     if (response.getStatus() != sf::Http::Response::Ok)
     {
-        LOG(WARNING) << "Failed to validate username on philips hue bridge: " << response.getStatus();
+        LOG(WARNING) << "Failed to get mclighting status: " << response.getStatus();
         LOG(WARNING) << response.getBody();
 
         if (response.getStatus() == sf::Http::Response::ConnectionFailed)
@@ -83,7 +83,6 @@ void McLightingDevice::updateLoop()
                 LOG(WARNING) << "Failed to set mc Lighting light: " << response.getStatus();
                 LOG(WARNING) << response.getBody();
             }
-            LOG(INFO) << "McLightingDevice: " << rest_string;
         }
         sf::sleep(sf::milliseconds(50));
     }
